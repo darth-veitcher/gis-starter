@@ -21,7 +21,7 @@ services:
             PGADMIN_DEFAULT_EMAIL: admin@jamesveitch.dev
             PGADMIN_DEFAULT_PASSWORD: password
         volumes: 
-            - ${ROOT_DIR}/data/pgadmin:/var/lib/pgadmin
+            - ${ROOT_DIR}/data/pgadmin:/var/lib/pgadmin4
 networks: 
     default:
         external: true
