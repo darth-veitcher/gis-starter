@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+    postgis:
+        # nb: from 13 onwards does not include raster by default
+        image: postgis/postgis
+        ports:
+            # remove in productiono if not needed
+            - 5432:5432
+        environment: 
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: postgres
+            POSTGRES_DB: gis
+            PGDATA: /var/lib/postgresql/data/pgdata
+        volumes: 
+            - ${ROOT_DIR}/data/postgis:/var/lib/postgresql/data
+    pgadmin:
+        image: dpage/pgadmin4
+        ports: 
+            - 5050:80
+        environment: 
+            PGADMIN_DEFAULT_EMAIL: admin@jamesveitch.dev
+            PGADMIN_DEFAULT_PASSWORD: password
+        volumes: 
+            - ${ROOT_DIR}/data/pgadmin:/var/lib/pgadmin
+networks: 
+    default:
+        external: true
+        name: gis
